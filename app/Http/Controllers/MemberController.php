@@ -122,14 +122,16 @@ class MemberController extends Controller
             }
             foreach($getAllTeacher as $allTeacherValue){
                 if($allTeacherValue['id']==$chooseTeacher){
-                    $teacherMail=$allTeacherValue['name'];
+                    $teacherName=$allTeacherValue['name'];
+                    $teacherEmail=$allTeacherValue['email'];
+                    
                 }
             }
 
             $articleCreate=articleModel::create([
                 'title'=>$articleTitle,
                 'content'=>$articleContent,
-                'checkByWho'=>$teacherMail,
+                'checkByWho'=>$teacherName,
                 'createByWho'=>Auth::user()->name,
                 'status'=>'0',
             ]);
@@ -137,7 +139,7 @@ class MemberController extends Controller
             if($articleCreate){
 
                 $to = collect([
-                    ['name' => Auth::user()->name, 'email' => Auth::user()->email]
+                    ['name' => $teacherName, 'email' => $teacherEmail]
                 ]);
                 $sendMailParams=['type'=>'createArticle','articleTitle'=>$articleTitle];
                 Mail::to($to)->send(new sendMail($sendMailParams));

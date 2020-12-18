@@ -37,6 +37,8 @@ class sendMail extends Mailable
             return $this->subject('樂寫通知信')->view('mail.teacherFinish')->with(['params'=>$this->myOutSideParams]);
         }else if($this->myOutSideParams['type']=='registerMail'){
             return $this->subject('樂寫通知信')->view('mail.registerMail')->with(['params'=>$this->myOutSideParams]);
+        }else if($this->myOutSideParams['type']=='getNoticeRegisterSuccess'){
+            return $this->subject('樂寫通知信')->view('mail.userRegisterSuccess')->with(['params'=>$this->myOutSideParams]);
         }
         
         

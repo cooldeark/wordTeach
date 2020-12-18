@@ -238,6 +238,11 @@ class RegisterController extends Controller
             'status'=>'1'
         ]);
         if($check){
+            $to = collect([
+                ['name' => 'admin', 'email' => $request->userMail]
+            ]);
+            $sendMailParams=['type'=>'getNoticeRegisterSuccess'];
+            Mail::to($to)->send(new sendMail($sendMailParams));
             return view('Index/main');
         }else{
             dd('error please contace administrator.');
