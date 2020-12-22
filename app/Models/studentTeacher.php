@@ -9,7 +9,7 @@ class studentTeacher extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    public $table="studentteacher_register";
+    public $table="studentTeacher_register";
     protected $fillable=[
         'email','password','name','whoRegister','status'
     ];
