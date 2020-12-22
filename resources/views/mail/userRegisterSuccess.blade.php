@@ -5,7 +5,7 @@
     並請回到網站做批閱 :
 </p>
 <p>
-    http://localhost:8000/login
+    https://www.wordteach.ml/login
 </p>
 <p>
     如果有任何問題，請聯繫:
