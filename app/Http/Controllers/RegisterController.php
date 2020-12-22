@@ -32,7 +32,7 @@ class RegisterController extends Controller
                 $oldPW=$request->oldPassword;
                 $newPW=Hash::make($request->newpassword);
             if(Hash::check($oldPW, Auth::user()->password)){
-                DB::table('studentteacher_register')->where('email','=',Auth::user()->email)->update([
+                DB::table('studentTeacher_register')->where('email','=',Auth::user()->email)->update([
                     'password'=>$newPW
                 ]);
                 return view('Index/main');
@@ -50,12 +50,12 @@ class RegisterController extends Controller
         if(Auth::check()){
             return view('Index/main');
         }else{
-            $findUserData=DB::table('studentteacher_register')->where('email','=',$request->useremail)->first();
+            $findUserData=DB::table('studentTeacher_register')->where('email','=',$request->useremail)->first();
             $findUser=$findUserData->email;
         if($findUser!=null){
             $systemPW=rand(100000, 999999);
             $newPW=Hash::make($systemPW);
-            DB::table('studentteacher_register')->where('email','=',$request->useremail)->update([
+            DB::table('studentTeacher_register')->where('email','=',$request->useremail)->update([
                 'password'=>$newPW
             ]);
 
@@ -116,8 +116,8 @@ class RegisterController extends Controller
         $habit=$request->habit;
         $write_position=$request->write_position;
         
-        $userEmailCheck=DB::table('studentteacher_register')->where('email',$email)->first();
-        $userNameCheck=DB::table('studentteacher_register')->where('name',$name)->first();
+        $userEmailCheck=DB::table('studentTeacher_register')->where('email',$email)->first();
+        $userNameCheck=DB::table('studentTeacher_register')->where('name',$name)->first();
         
         if($userEmailCheck==null && $userNameCheck==null){
             $createUser=studentTeacher::create([

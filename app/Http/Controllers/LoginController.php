@@ -30,7 +30,7 @@ class LoginController extends Controller
         }else{
         $userEmail=$request->userEmail;
         $userPwd=$request->userPwd;
-        $userNameCheck=DB::table('studentteacher_register')->where('email',$userEmail)->first();
+        $userNameCheck=DB::table('studentTeacher_register')->where('email',$userEmail)->first();
         
             if($userNameCheck->status=='1'){
                 if(Auth::attempt(['email' => $userEmail, 'password' => $userPwd])){//檢查的時候，密碼自動會幫你hash不用自己來
