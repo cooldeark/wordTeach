@@ -169,6 +169,7 @@ class RegisterController extends Controller
                         'write_frequency'=>$write_frequency,
                         'write_experience'=>$write_experience,
                         'write_purpose'=>$write_purpose,
+                        'cooperation_school'=>$isMember,
                         
                     ]);
                 }else{//教師註冊
@@ -194,6 +195,7 @@ class RegisterController extends Controller
                         'teach_position'=>$teach_position,
                         'teach_experience'=>$teach_experience,
                         'teach_years'=>$teach_years,
+                        'cooperation_school'=>$isMember,
                         
                     ]);
 
