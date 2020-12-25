@@ -257,7 +257,11 @@
                @endif
 
             </div>
-            
+
+            <div class="mb-3"><h2>學校合作代碼</h2></div>
+            <div>
+               <input type="text" name="isMember"/>
+            </div>
             {{--take value--}}
             <input style="display:none;" type="text" name="who" value="{{$whoRegister}}"/>
 

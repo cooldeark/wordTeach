@@ -191,7 +191,7 @@ TED x TKU分享《累積的⼒量》。現為樂寫創辦人、聯發科技志�
         <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="h1 text-center mb-5 mt-5"><b>合作夥伴</b></div>
               <div class="mobileHide text-center mb-5 mt-5" style="margin-left:auto; margin-right:auto; ">
-                <img class="" src="{{asset('images/logo001.jpg')}}" alt="Generic placeholder image">
+                <img class="" src="{{asset('images/logo006.jpg')}}" alt="Generic placeholder image">
                 </div>
 
                 <div class="mobileShow text-center mb-5 mt-5" style="margin-left:auto; margin-right:auto; ">

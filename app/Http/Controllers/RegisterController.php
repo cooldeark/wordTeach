@@ -89,7 +89,7 @@ class RegisterController extends Controller
     }
 
     public function whoRegister(Request $request){
-
+        
         
         if(Auth::check()){
             return view('Index/main');
@@ -115,18 +115,34 @@ class RegisterController extends Controller
         $address_sub_name=$request->address_sub_name;
         $habit=$request->habit;
         $write_position=$request->write_position;
-        
+        $isMember=$request->isMember;
+
         $userEmailCheck=DB::table('studentTeacher_register')->where('email',$email)->first();
         $userNameCheck=DB::table('studentTeacher_register')->where('name',$name)->first();
         
         if($userEmailCheck==null && $userNameCheck==null){
-            $createUser=studentTeacher::create([
-                'email'=>$email,
-                'password'=>$password, 
-                'name'=>$name,
-                'whoRegister'=>$whoRegister,
-                'status'=>0
-            ]);
+
+            if(strtolower($isMember)=='mediatek'){
+                $createUser=studentTeacher::create([
+                    'email'=>$email,
+                    'password'=>$password, 
+                    'name'=>$name,
+                    'whoRegister'=>$whoRegister,
+                    'status'=>1
+                ]);
+            }else{
+                $createUser=studentTeacher::create([
+                    'email'=>$email,
+                    'password'=>$password, 
+                    'name'=>$name,
+                    'whoRegister'=>$whoRegister,
+                    'status'=>0
+                ]);
+            }
+
+            
+
+
             if($createUser){
                 if($whoRegister=='0'){//學生註冊
                     $read_position=$request->read_position;
@@ -185,13 +201,18 @@ class RegisterController extends Controller
                 
                 $adminMail=(adminMailModel::get()->toArray())[0]['email'];
 
-                $to = collect([
-                    ['name' => 'admin', 'email' => $adminMail]
-                ]);
-
-                $userMaillAddress='https://www.wordteach.ml/registetVerify/'.$email;
-                $sendMailParams=['type'=>'registerMail','name'=>$name,'userMailAddress'=>$userMaillAddress];
-                Mail::to($to)->send(new sendMail($sendMailParams));
+                if(strtolower($isMember)=='mediatek'){
+                    // do nothing
+                }else{
+                    $to = collect([
+                        ['name' => 'admin', 'email' => $adminMail]
+                    ]);
+    
+                    $userMaillAddress='https://www.wordteach.ml/registetVerify/'.$email;
+                    $sendMailParams=['type'=>'registerMail','name'=>$name,'userMailAddress'=>$userMaillAddress];
+                    Mail::to($to)->send(new sendMail($sendMailParams));
+                }
+                
 
                 $message=[
                     'message'=>'success',

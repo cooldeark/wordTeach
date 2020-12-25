@@ -33,6 +33,7 @@ class CreateStudentUserTable extends Migration
             $table->string('write_frequency');
             $table->string('write_experience');
             $table->string('write_purpose');
+            $table->string('cooperation_school');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

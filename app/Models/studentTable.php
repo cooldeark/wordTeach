@@ -13,6 +13,6 @@ class studentTable extends Model
     protected $fillable=[
         'email','name','sex','birth','age','phone',
         'education','profession','address_main','address_sub','address_main_name','address_sub_name',
-        'habit','write_position','read_position','write_frequency','write_experience','write_purpose'
+        'habit','write_position','read_position','write_frequency','write_experience','write_purpose','cooperation_school'
     ];
 }
