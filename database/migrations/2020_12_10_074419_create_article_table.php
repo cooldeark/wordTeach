@@ -16,10 +16,10 @@ class CreateArticleTable extends Migration
         Schema::create('article', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('content',10000);
+            $table->longText('content');
             $table->string('checkByWho');
             $table->string('createByWho');
-            $table->string('teacherComments',10000)->nullable();
+            $table->longText('teacherComments')->nullable();
             $table->string('scores')->nullable();
             $table->string('status')->comment('0:未審核 1:審核完畢');
             $table->timestamp('created_at')->nullable();
