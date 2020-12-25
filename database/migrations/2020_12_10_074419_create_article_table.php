@@ -19,7 +19,7 @@ class CreateArticleTable extends Migration
             $table->string('content',10000);
             $table->string('checkByWho');
             $table->string('createByWho');
-            $table->string('teacherComments')->nullable();
+            $table->string('teacherComments',10000)->nullable();
             $table->string('scores')->nullable();
             $table->string('status')->comment('0:未審核 1:審核完畢');
             $table->timestamp('created_at')->nullable();
