@@ -32,7 +32,7 @@ class CreateTeacherUserTable extends Migration
             $table->string('teach_position');
             $table->string('teach_experience');
             $table->string('teach_years');
-            $table->string('cooperation_school');
+            $table->string('cooperation_school')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
