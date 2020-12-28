@@ -125,7 +125,7 @@
 
       $('.showContent').click(function(){
         var nowContent=$(this).parent().find('.textShow').text();
-          $('.modalArticleContent').text(nowContent);
+          $('.modalArticleContent').html(nowContent.replace(/\n/g,"<br/>"));
           $('#articleContent').trigger('click');
       });
 

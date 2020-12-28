@@ -24,7 +24,7 @@
             <h4 class="fadeIn second" style="">信箱</h4>
             <input type="text" id="login" class="fadeIn second" name="userEmail" placeholder="Email">
             <h4 class="fadeIn third">密碼</h4>
-            <input type="text" id="password" class="fadeIn third" name="userPwd" placeholder="password" autocomplete="new-password">
+            <input type="text" id="password" class="fadeIn third" name="userPwd" placeholder="password" >
             <input type="submit" class="fadeIn fourth" value="Log In">
           </form>
           @if($errors->first('error'))

@@ -51,23 +51,28 @@ class RegisterController extends Controller
             return view('Index/main');
         }else{
             $findUserData=DB::table('studentTeacher_register')->where('email','=',$request->useremail)->first();
-            $findUser=$findUserData->email;
-        if($findUser!=null){
-            $systemPW=rand(100000, 999999);
-            $newPW=Hash::make($systemPW);
-            DB::table('studentTeacher_register')->where('email','=',$request->useremail)->update([
-                'password'=>$newPW
-            ]);
+            if($findUserData==null || $findUserData=='null' || empty($findUserData)){
+                return Redirect::back()->withErrors(['forgotPWMessage'=>'無此使用者註冊資料']);
+            }else{
+                $findUser=$findUserData->email;
+                if($findUser!=null){
+                    $systemPW=rand(100000, 999999);
+                    $newPW=Hash::make($systemPW);
+                    DB::table('studentTeacher_register')->where('email','=',$request->useremail)->update([
+                        'password'=>$newPW
+                    ]);
 
-            $to = collect([
-                ['name' => $findUserData->name, 'email' => $findUserData->email]
-            ]);
-            $sendMailParams=['type'=>'forgotPWD','newPW'=>$systemPW];
-            Mail::to($to)->send(new sendMail($sendMailParams));
-            return Redirect::back()->withErrors(['forgotPWMessage'=>"新密碼已寄至您的信箱，再請查閱。"]);
-        }else{
-            return Redirect::back()->withErrors(['forgotPWMessage'=>'無此使用者註冊資料']);
-        }
+                    $to = collect([
+                        ['name' => $findUserData->name, 'email' => $findUserData->email]
+                    ]);
+                    $sendMailParams=['type'=>'forgotPWD','newPW'=>$systemPW];
+                    Mail::to($to)->send(new sendMail($sendMailParams));
+                    return Redirect::back()->withErrors(['forgotPWMessage'=>"新密碼已寄至您的信箱，再請查閱。"]);
+                }else{
+                    return Redirect::back()->withErrors(['forgotPWMessage'=>'無此使用者註冊資料']);
+                }
+            }
+            
         }
         
         

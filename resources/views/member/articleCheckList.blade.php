@@ -59,7 +59,7 @@
               <tr>
               <td class="articleTitle" style="width:20%;">{{$value['title']}}</td>
               <td style="width:15%;">
-                <div class="textShow">{{$value['content']}}</div>
+	      <div class="textShow">{{$value['content']}}</div>
                 <button class="showContent ml-5 btn-success">詳細內容..</button>
               </td>
               <td style="width:10%;">
@@ -166,7 +166,7 @@
 
       $('.showContent').click(function(){
         var nowContent=$(this).parent().find('.textShow').text();
-          $('.modalArticleContent').text(nowContent);
+          $('.modalArticleContent').html(nowContent.replace(/\n/g, "<br/>"));
           $('#articleContent').trigger('click');
       });
 
