@@ -79,13 +79,17 @@
         $(this).attr('disabled',true);
         
         var checkTitle=false,checkContent=false,errorMessage='';
+        var getTitle=$('#articleTitle').val();
+        var changeTitle=getTitle.replaceAll('　','');
+         changeTitle=changeTitle.replaceAll(' ','');
 
-        if($('#articleTitle').val()!='' && $('#articleTitle').val()!=undefined){
+         
+        if($('#articleTitle').val()!='' && $('#articleTitle').val()!=undefined && changeTitle.length>0){
             checkTitle=true;
         }else{
             errorMessage+=' 文章標題尚未填寫 ';
         }
-
+        
         if($('#articleContent').val()!='' && $('#articleContent').val()!=undefined){
             checkContent=true;
         }else{
@@ -95,6 +99,7 @@
         if(errorMessage!=""){
                $('#errormessageDiv').css('display','block');
                $('#errormessageDiv').text(errorMessage);
+               $(this).attr('disabled',false);
             }else{
                $('#errormessageDiv').css('display','none');
             }

@@ -95,7 +95,15 @@
   <script>
     $('#changePWBtn').click(function(){
       $(this).attr('disabled',true);
-      if($('#newpassword').val()!="" && $('#agnewpassword').val()!=""){      
+      if($('#newpassword').val()!="" && $('#agnewpassword').val()!=""){
+
+       var myRegexp=new RegExp("^\\w{6,32}$");
+               if(myRegexp.test($('#newpassword').val())){
+                var  checkPassword=true;
+               }else{
+                var  checkPassword=false;
+               }
+    if(checkPassword){
       if($('#newpassword').val()==$('#agnewpassword').val() && $('#oldPassword').val()!=""){
         document.changePWForm.submit();
       }else if($('#newpassword').val()!=$('#agnewpassword').val() && $('#oldPassword').val()=="" ){
@@ -108,6 +116,11 @@
         alert('新密碼不一樣!');
         $(this).attr('disabled',false);
       }
+    }else{
+      alert('新密碼格式不符合，密碼格式為6~32碼');
+      $(this).attr('disabled',false);
+    }
+      
     }else{
       alert('新密碼為空!');
       $(this).attr('disabled',false);

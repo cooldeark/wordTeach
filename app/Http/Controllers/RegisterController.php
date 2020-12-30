@@ -37,7 +37,7 @@ class RegisterController extends Controller
                 ]);
                 return view('Index/main');
         }else{
-            return Redirect::back()->withErrors(['oldPWError'=>'舊密碼錯誤']);
+            return redirect()->action('App\Http\Controllers\LoginController@show')->withErrors(['oldPWError'=>'舊密碼錯誤']);
         }
         }else{
             return view('Index/main');
