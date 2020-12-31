@@ -16,6 +16,9 @@ use App\Mail\sendMail;
 
 class MemberController extends Controller
 {
+    public function __construct(){
+        date_default_timezone_set("Asia/Taipei");
+    }
     public function memberData(Request $request){
         if(Auth::check()){
             if(Auth::user()->whoRegister=='0'){
